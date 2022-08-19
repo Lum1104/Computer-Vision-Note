@@ -136,8 +136,8 @@ int main() {
 }
 ```
 
-![](D:\SZTU\大三\ComputerVisionCourse-main\note\pic\histogram.png)
+![](./pic/histogram.png)
 
-![](D:\SZTU\大三\ComputerVisionCourse-main\note\pic\equalized.png)
+![](./pic/equalized.png)
 
 haven't watch video 7!!

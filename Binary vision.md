@@ -101,4 +101,4 @@ int main() {
 }
 ```
 
-![](D:\SZTU\大三\ComputerVisionCourse-main\note\pic\contour.png)
+![](./pic/contour.png)
