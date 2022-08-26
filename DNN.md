@@ -62,3 +62,65 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+## Using GoogleNet
+
+```C++
+#include<iostream>
+#include<fstream>
+#include<opencv2/opencv.hpp>
+#include<opencv2/dnn.hpp>
+
+using namespace std;
+using namespace cv;
+using namespace cv::dnn;
+
+String model_file = "../data/bvlc_googlenet.caffemodel";
+String model_text = "../data/bvlc_googlenet.prototxt";
+String label_file = "../data/synset_words.txt";
+
+vector<String> readLabels() {
+	vector<String> classNames;
+	ifstream fp(label_file);
+	if (!fp.is_open()) {
+		cout << "Error when open file synset_words.txt" << endl;
+		exit(-1);
+	}
+	string name;
+	while (!fp.eof()) {
+		getline(fp, name);
+		if (name.length()) {
+			classNames.push_back(name.substr(name.find(' ')+1));
+		}
+	}
+	fp.close();
+	return classNames;
+}
+
+int main() {
+	Mat img = imread("../data/snooker.jpg");
+	//imshow("orignial image", img);
+	vector<String> labels = readLabels();
+	Net net = readNetFromCaffe(model_text, model_file);
+	if (net.empty()) {
+		cout << "Error when read Model" << endl;
+	}
+	Mat inputBlob = blobFromImage(img, 1.0, Size(224, 224), Scalar(104, 117, 123));
+	Mat prob;
+	for (int i = 0; i < 10; i++) {
+		net.setInput(inputBlob, "data");
+		prob = net.forward("prob");
+	}
+	Mat probMat = prob.reshape(1, 1);
+	Point classNumber;
+	double classProb;
+	minMaxLoc(probMat, NULL, &classProb, NULL, &classNumber);
+	int classidx = classNumber.x;
+	printf("current image classification: %s, possible: %.2f", labels.at(classidx).c_str(), classProb);
+	putText(img, labels.at(classidx), Point(20, 20), FONT_HERSHEY_COMPLEX, 1.0, Scalar(0, 0, 255), 2, 8);
+	imshow("Image Classification", img);
+	imwrite("dnn_GoogleNet.png", img);
+	waitKey(0);
+	return 0;
+}
+```
+
