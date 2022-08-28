@@ -17,8 +17,8 @@ model = cv2.dnn.readNet(model='./models/frozen_inference_graph.pb',
                         config='./models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt.txt',
                         framework='TensorFlow')
 # Set backend and target
-model.setPerferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
-model.setPerferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+model.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+model.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 min_confidence_score = 0.4
 cap = cv2.VideoCapture(0)
 while cap.isOpened():
@@ -106,10 +106,16 @@ int main() {
 	}
 	Mat inputBlob = blobFromImage(img, 1.0, Size(224, 224), Scalar(104, 117, 123));
 	Mat prob;
+    
+    // why needed to do 10 for loop?
 	for (int i = 0; i < 10; i++) {
 		net.setInput(inputBlob, "data");
 		prob = net.forward("prob");
 	}
+    // The following seems can get the same results.
+    //net.setInput(inputBlob, "data");
+	//prob = net.forward("prob");
+    
 	Mat probMat = prob.reshape(1, 1);
 	Point classNumber;
 	double classProb;
@@ -119,6 +125,102 @@ int main() {
 	putText(img, labels.at(classidx), Point(20, 20), FONT_HERSHEY_COMPLEX, 1.0, Scalar(0, 0, 255), 2, 8);
 	imshow("Image Classification", img);
 	imwrite("dnn_GoogleNet.png", img);
+	waitKey(0);
+	return 0;
+}
+```
+
+![](./pic/dnn_GoogleNet.png)
+
+```C++
+#include<iostream>
+#include<fstream>
+#include<opencv2/opencv.hpp>
+#include<opencv2/dnn.hpp>
+
+using namespace std;
+using namespace cv;
+using namespace cv::dnn;
+
+String model_file = "../data/VGG_VOC0712_SSD_300x300_iter_120000.caffemodel";
+String model_text = "../data/deploy.prototxt";
+String label_file = "../data/labelmap_det.txt";
+
+const size_t width = 300;
+const size_t height = 300;
+
+vector<String> readLabels() {
+	vector<String> classNames;
+	ifstream fp(label_file);
+	if (!fp.is_open()) {
+		cout << "Error when open file labelmap_det.txt" << endl;
+		exit(-1);
+	}
+	string name;
+	while (!fp.eof()) {
+		getline(fp, name);
+		if (name.length() && (name.find("display_name:") == 0)) {
+			string temp = name.substr(15);
+			temp.replace(temp.end() - 1, temp.end(), "");
+			classNames.push_back(temp);
+		}
+	}
+	fp.close();
+	return classNames;
+}
+
+const int meanValues[3] = { 104, 117, 123 };
+static Mat getMean(const size_t& w, const size_t& h) {
+	Mat mean;
+	vector<Mat> channels;
+	for (int i = 0; i < 3; i++) {
+		Mat channel(h, w, CV_32F, Scalar(meanValues[i]));
+		channels.push_back(channel);
+	}
+	merge(channels, mean);
+	return mean;
+}
+
+static Mat preprocess(const Mat& frame) {
+	Mat preprocesed;
+	frame.convertTo(preprocesed, CV_32F);
+	resize(preprocesed, preprocesed, Size(width, height)); // 300x300 image
+	Mat mean = getMean(width, height);
+	subtract(preprocesed, mean, preprocesed);
+	return preprocesed;
+}
+
+int main() {
+	Mat img = imread("../data/woman_darkhair.tif");
+	//imshow("orignial image", img);
+	vector<String> labels = readLabels();
+	Net net = readNetFromCaffe(model_text, model_file);
+	if (net.empty()) {
+		cout << "Error when read Model" << endl;
+	}
+	//Mat input_image = preprocess(img);
+	Mat inputBlob = blobFromImage(img, 1.0, Size(300, 300), Scalar(104, 117, 123));
+	Mat detection;
+
+	net.setInput(inputBlob, "data");
+	detection = net.forward("detection_out");
+	Mat detectionMat(detection.size[2], detection.size[3], CV_32F, detection.ptr<float>());
+	float confidence_threshold = 0.8;
+	for (int i = 0; i < detectionMat.rows; i++) {
+		float confidence = detectionMat.at<float>(i, 2);
+		if (confidence > confidence_threshold) {
+			size_t objIndex = (size_t)(detectionMat.at<float>(i, 1));
+			float tl_x = detectionMat.at<float>(i, 3) * img.cols;
+			float tl_y = detectionMat.at<float>(i, 4) * img.rows;
+			float br_x = detectionMat.at<float>(i, 5) * img.cols;
+			float br_y = detectionMat.at<float>(i, 6) * img.rows;
+
+			Rect object_box((int)tl_x, (int)tl_y, (int)(br_x - tl_x), (int)(br_y - tl_y));
+			rectangle(img, object_box, Scalar(0, 255, 0), 2, 8, 0);
+			putText(img, labels[objIndex].c_str(), Point(tl_x + 10, tl_y + 10), FONT_HERSHEY_SIMPLEX, 1.0, Scalar(0, 255, 0));
+		}
+	}
+	imshow("Image Classification", img);
 	waitKey(0);
 	return 0;
 }
