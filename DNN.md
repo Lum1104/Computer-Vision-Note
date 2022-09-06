@@ -108,6 +108,9 @@ int main() {
 	Mat prob;
     
     // why needed to do 10 for loop?
+    
+    // If the image is transformed differently
+    // the average result is more accurate through 10 cycles
 	for (int i = 0; i < 10; i++) {
 		net.setInput(inputBlob, "data");
 		prob = net.forward("prob");
