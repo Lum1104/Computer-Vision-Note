@@ -1,4 +1,10 @@
-# Hough Transform
+---
+layout: default
+title: Hough Transform
+nav_order: 10
+permalink: /hough-transform/
+description: Line and circle detection using the Hough transform in OpenCV.
+---
 
 - Hough Transform Lines
 - Hough Transform Circles
@@ -25,9 +31,9 @@ Roughly same approach as with lines
     - Edge Detection and finding possible circle centers
     - Finding the best radius for each candidate center
 
- $ C: (x_{center}, y_{center}, r)$ 
+ $C: (x_{\text{center}}, y_{\text{center}}, r)$ 
 
-```C++
+```cpp
 #include<iostream>
 #include<opencv2/core.hpp>
 #include<opencv2/highgui.hpp>
@@ -111,4 +117,4 @@ int main() {
 }
 ```
 
-<img src="./pic/circles.png" style="zoom:50%;" />
+<img src="{{ '/pic/circles.png' | relative_url }}" style="zoom:50%;" />

@@ -1,7 +1,13 @@
-# Camera Geometry and Calibration
+---
+layout: default
+title: Camera Geometry and Calibration
+nav_order: 2
+permalink: /camera-geometry-and-calibration/
+description: Intrinsics, distortion, chessboard detection, and camera calibration in OpenCV.
+---
 
 $$
-FOV = \frac{d\cdot WD}{f}, \text{where d is the sensor size}
+\mathrm{FOV} = \frac{d\cdot WD}{f} \quad \text{where } d \text{ is the sensor size}
 $$
 
 ## Camera Geometry
@@ -12,7 +18,7 @@ $$
 - Principle point coordinates
   - To account
 
-```C++
+```cpp
 #include <iostream>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/core.hpp>
@@ -115,4 +121,4 @@ int main(int argc, char **argv) {
 
 ```
 
-![](./pic/chessboard.jpg)
+![]({{ '/pic/chessboard.jpg' | relative_url }})

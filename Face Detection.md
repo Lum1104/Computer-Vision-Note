@@ -1,4 +1,10 @@
-# Face Detection
+---
+layout: default
+title: Face, Hands, and 3D Detection
+nav_order: 11
+permalink: /face-detection/
+description: Real-time face detection, face mesh landmarks, hand tracking, and objectron with MediaPipe.
+---
 
 ```python
 import cv2
@@ -51,7 +57,7 @@ with mp_facedetector.FaceDetection(min_detection_confidence=0.7) as face_detecti
 
 ## Land Marks
 
-```Python
+```python
 import cv2
 import mediapipe as mp
 import time

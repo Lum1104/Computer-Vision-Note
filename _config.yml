@@ -1,0 +1,32 @@
+title: Computer Vision Notes
+description: Concise computer vision notes with OpenCV examples
+remote_theme: just-the-docs/just-the-docs
+
+# Site settings
+logo: 
+search_enabled: true
+heading_anchors: true
+url: 
+baseurl: 
+
+# Aux links in the header
+aux_links:
+  Repository:
+    - https://github.com/Lum1104/Computer-Vision-Note
+
+# Markdown and math
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  math_engine: mathjax
+
+# Enable callouts (admonitions) style if desired
+# just_the_docs:
+#   callouts:
+#     note:
+#       title: Note
+#       color: blue
+
+plugins:
+  - jekyll-remote-theme
