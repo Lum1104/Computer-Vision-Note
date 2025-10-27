@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - master
-      - lumdeploy-and-enhance-github-page-18c2
   workflow_dispatch:
 
 permissions:
