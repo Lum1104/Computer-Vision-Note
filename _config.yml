@@ -6,8 +6,8 @@ remote_theme: just-the-docs/just-the-docs
 logo: 
 search_enabled: true
 heading_anchors: true
-url: 
-baseurl: 
+url: https://lum1104.github.io
+baseurl: /Computer-Vision-Note
 
 # Aux links in the header
 aux_links:
