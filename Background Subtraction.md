@@ -1,4 +1,10 @@
-# Background Subtraction
+---
+layout: default
+title: Background Subtraction
+nav_order: 9
+permalink: /background-subtraction/
+description: Background modeling with MOG2 and KNN, plus FPS measurement.
+---
 
 - Pre-processing of the image
 - Segmentation of objects
@@ -9,7 +15,7 @@
   - Mixture of Gaussian
   - Neural Networks
 
-```C++
+```cpp
 #include<opencv2/objdetect.hpp>
 #include<opencv2/highgui.hpp>
 #include<opencv2/imgproc.hpp>
@@ -62,7 +68,7 @@ int main() {
 
 ## FPS Count
 
-```C++
+```cpp
 #include<opencv2/opencv.hpp>
 #include<iostream>
 #include<time.h>

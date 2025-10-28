@@ -1,4 +1,10 @@
-# DNN
+---
+layout: default
+title: DNN
+nav_order: 14
+permalink: /dnn/
+description: OpenCV DNN APIs and examples for classification and detection (C++ and Python).
+---
 
 ```python
 import cv2
@@ -64,7 +70,7 @@ cv2.destroyAllWindows()
 
 ## Using GoogleNet
 
-```C++
+```cpp
 #include<iostream>
 #include<fstream>
 #include<opencv2/opencv.hpp>
@@ -133,9 +139,9 @@ int main() {
 }
 ```
 
-![](./pic/dnn_GoogleNet.png)
+![]({{ '/pic/dnn_GoogleNet.png' | relative_url }})
 
-```C++
+```cpp
 #include<iostream>
 #include<fstream>
 #include<opencv2/opencv.hpp>

@@ -1,8 +1,14 @@
-# Histogram
+---
+layout: default
+title: Histograms
+nav_order: 7
+permalink: /histograms/
+description: Building 1D and color histograms, equalization, and comparisons.
+---
 
-## 1 1D Histogram
+## 1D histogram
 
-```C++
+```cpp
 MatND histogram;
 int histSize = 256;
 const int* channel_numbers = { 0 };
@@ -13,9 +19,9 @@ int number_bins = histSize;
 calcHist(&image3, 1, 0, Mat(), histogram, 1, &number_bins, &channel_ranges);
 ```
 
-Equalisation, make your picture brighter.
+Equalization to enhance contrast.
 
-```C++
+```cpp
 Mat histEqualized;
 equalizeHist(img, histEqualized);
 
@@ -23,9 +29,9 @@ imshow();
 waitKey();
 ```
 
-comparision for two picture: like a classification.
+Comparison between two images using histogram metrics.
 
-```C++
+```cpp
 #include<opencv2/core/core.hpp>
 #include<opencv2/highgui/highgui.hpp>
 #include<opencv2/imgproc.hpp>
@@ -136,8 +142,8 @@ int main() {
 }
 ```
 
-![](./pic/histogram.png)
+![]({{ '/pic/histogram.png' | relative_url }})
 
-![](./pic/equalized.png)
+![]({{ '/pic/equalized.png' | relative_url }})
 
 haven't watch video 7!!

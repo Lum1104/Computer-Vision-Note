@@ -1,4 +1,10 @@
-# Stereo Vision
+---
+layout: default
+title: Stereo Vision
+nav_order: 12
+permalink: /stereo-vision/
+description: Stereo pipeline overview: calibration, epipolar geometry, disparity, and depth.
+---
 
 - Reconstructing 3D geometry based on camera images from two or more viewpoints
 - Human Vision
@@ -15,4 +21,4 @@ Depth map will be combined with an obstacle detection algorithm
 
 - Estimate distance by measuring the time of flight of the light signal between the camera and the subject for each point of the image
 
-<img src="./pic/flight.png" style="zoom:38%;" />
+<img src="{{ '/pic/flight.png' | relative_url }}" style="zoom:38%;" />

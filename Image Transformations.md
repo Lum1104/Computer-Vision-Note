@@ -1,4 +1,10 @@
-# Image Transformations
+---
+layout: default
+title: Image Transformations
+nav_order: 8
+permalink: /image-transformations/
+description: Affine and perspective transforms, interpolation, and distortion models.
+---
 
 ## Geometric Transformations
 
@@ -22,7 +28,7 @@
 
 - Mapping between the images
   $$
-  i = T_i(i', j')\quad j = T_j(i', j')
+  i = T_i(i', j'),\quad j = T_j(i', j')
   $$
 
 - Define the Transformation
@@ -97,7 +103,7 @@
 
 <hr/>
 
-```C++
+```cpp
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/opencv.hpp>
 #include <iostream>
@@ -188,7 +194,7 @@ int main(int argc, char** argv)
 }
 ```
 
-```C++
+```cpp
 #pragma once
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/opencv.hpp>

@@ -1,6 +1,12 @@
-# Smoothing And Noise
+---
+layout: default
+title: Smoothing and Noise
+nav_order: 3
+permalink: /smoothing-and-noise/
+description: Median and Gaussian blurs, HSV thresholding, and basic denoising in OpenCV.
+---
 
-```C++
+```cpp
 #include<opencv2/opencv.hpp>
 #include<iostream>
 

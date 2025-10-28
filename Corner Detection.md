@@ -1,4 +1,10 @@
-# Corner Detection
+---
+layout: default
+title: Corner Detection
+nav_order: 6
+permalink: /corner-detection/
+description: Harris and Shi–Tomasi corner detection with OpenCV examples.
+---
 
 - Feature in images
   - Matching points between frames of an environment
@@ -47,14 +53,14 @@ $$
 - Remaining corners are sorted by quality in descending order
 - Throws away corners where there is a better corner at a distance less than a maximum distance
 
-```C++
+```cpp
 cornerHarris(gray, output,
             3,            // Neighborhood size
             3,            // Aperture parameter for the Sobel operator
             0.04);        // Harris detector free parameter
 ```
 
-```C++
+```cpp
 goodFeaturesToTrack(gray, corners,
                    100,           // Max corners to detector
                    0.01,          // Minimal quality of corners
@@ -70,7 +76,7 @@ goodFeaturesToTrack(gray, corners,
 - A way to find more exact corner positions by using sub-pixels
   - Normally it is integer pixels
 
-```C++
+```cpp
 #include<opencv2/opencv.hpp>
 #include<iostream>
 
@@ -147,6 +153,6 @@ int main() {
 }
 ```
 
-<img src="./pic/harris.png" style="zoom:50%;" />
+<img src="{{ '/pic/harris.png' | relative_url }}" style="zoom:50%;" />
 
-<img src="./pic/shiTomasi.png" style="zoom:50%;" />
+<img src="{{ '/pic/shiTomasi.png' | relative_url }}" style="zoom:50%;" />

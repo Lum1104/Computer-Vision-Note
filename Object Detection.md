@@ -1,4 +1,10 @@
-# Object Detection
+---
+layout: default
+title: Object Detection
+nav_order: 13
+permalink: /object-detection/
+description: Haar cascades and OpenCV object detection examples.
+---
 
 ## Applications of Object Detection
 
@@ -31,7 +37,7 @@
 
 **Detection != Recognition**
 
-```C++
+```cpp
 #include<opencv2/objdetect.hpp>
 #include<opencv2/highgui.hpp>
 #include<opencv2/imgproc.hpp>

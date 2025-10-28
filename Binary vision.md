@@ -1,4 +1,10 @@
-# Binary Vision
+---
+layout: default
+title: Binary Vision
+nav_order: 4
+permalink: /binary-vision/
+description: Thresholding, morphology, and connectivity with OpenCV snippets.
+---
 
 - Thresholding
 - Threshold Detection
@@ -62,7 +68,7 @@
 
 - Relabel equivalent Labels
 
-```C++
+```cpp
 #include<opencv2/core/core.hpp>
 #include<opencv2/highgui/highgui.hpp>
 #include<opencv2/imgproc.hpp>
@@ -101,4 +107,4 @@ int main() {
 }
 ```
 
-![](./pic/contour.png)
+![]({{ '/pic/contour.png' | relative_url }})

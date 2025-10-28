@@ -1,11 +1,17 @@
-# Edge Detection
+---
+layout: default
+title: Edge Detection
+nav_order: 5
+permalink: /edge-detection/
+description: Theory and OpenCV examples for first- and second-derivative edge detectors.
+---
 
-What Edges are?
+## What are edges?
 
 - Segment objects and information in images
 - Edges is the analysis of discontinuities in images
 
-Edge Detection
+## Edge detection
 
 - Where brightness changes abruptly
 
@@ -18,7 +24,7 @@ Edge Detection
   - Real
   - Noisy
 
-## First Derivative
+## First derivative
 
 - Rate of change in two directions
 - Detecting edges can be performed by locating pixel locations where the gradient is higher than its neighbors
@@ -48,7 +54,7 @@ Edge Detection
 
 ## Thresholding
 
-## Second Derivative
+## Second derivative
 
 - Laplacian of Gaussian
 - Canny
@@ -64,7 +70,7 @@ Edge Detection
 - Laplacian uses Sobel internally
 
 $$
-Laplace(f) = \frac{\partial^2f}{\partial x^2} + \frac{\partial^2f}{\partial y^2}
+\mathrm{Laplace}(f) = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}
 $$
 
 ### Canny
@@ -87,7 +93,7 @@ If the pixel gradient is between the two thresholds, then it will be accepted on
 
 Canny recommended a *upper:lower* ratio between 2:1 and 3:1.
 
-```C++
+```cpp
 #include<iostream>
 #include<vector>
 
@@ -157,8 +163,8 @@ int main() {
 
 Canny Detection
 
-<img src="./pic/canny.png" style="zoom:50%;" />
+<img src="{{ '/pic/canny.png' | relative_url }}" style="zoom:50%;" />
 
 Laplacian Detection
 
-<img src="./pic/laplacian.png" style="zoom:50%;" />
+<img src="{{ '/pic/laplacian.png' | relative_url }}" style="zoom:50%;" />
